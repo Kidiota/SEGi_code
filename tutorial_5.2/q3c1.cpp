@@ -4,8 +4,8 @@ int main(){
     int total = 0;
     int num = 0;
     do {
-        num++;
         total = total + num;
+        num++;
     }
     while (num <= 10);
     cout<<total<<endl;
