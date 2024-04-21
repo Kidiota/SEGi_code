@@ -1,4 +1,5 @@
 #include<iostream>
+#include<string>
 using namespace std;
 
 int main(){
@@ -18,6 +19,9 @@ int main(){
                     cout<<"Please enter your phone number:";
                     string phoneNumber;
                     cin>>phoneNumber;
+                    //generate booking number
+                    string bookingNumber = userName.substr(0,4) + phoneNumber.substr(phoneNumber.length()-4);
+                    cout<<bookingNumber<<endl;
                 }
                 switch (chos)
                 {
