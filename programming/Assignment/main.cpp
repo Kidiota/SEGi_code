@@ -2,6 +2,18 @@
 #include<string>
 using namespace std;
 
+//prices
+int tokyoStandard[6] = {9945, 7035, 6090, 5620, 8455, 4975};
+int tokyoDeluxe[6] = {10485, 7580, 6630, 6160, 8910, 5245};
+int koreaStandard[6] = {7985, 6315, 5380, 5990, 3995, 890};
+int koreaDeluxe[6] = {8730, 6950, 6150, 6550, 4365, 1465};
+int koreaLuxury[6] = {10745, 9290, 8155, 8060, 5375, 2440};
+string package[3] = {"Standard", "Deluxe", "Luxury"};
+
+void TotalPrice(int chos, int packageOption, int numOfPeople, bool withChildOrNot, bool withChildBedOrNot){
+    
+}
+
 int main(){
         for(int chos = 0; chos != -1; chos--){ //this is for the loop from the end
             //Menu
@@ -21,38 +33,16 @@ int main(){
                     cin>>phoneNumber;
                     //generate booking number
                     string bookingNumber = userName.substr(0,4) + phoneNumber.substr(phoneNumber.length()-4);
-                    cout<<bookingNumber<<endl;
+                    //cout<<bookingNumber<<endl;
                 }
-                switch (chos)
-                {
-                case 1:
-                    //TOKYO
-                    cout<<"jijl";
-                    break;
-
-                case 2:
-                    //SOUTH KOREA
-                    cout<<"ttt";
-                    break;
-                
-                case 3:
-                    //EXIT
+                else if(chos == 3){
                     chos = 0;
-                    break;
-
-                default:
+                }
+                else{
                     cout<<"You entered WRONG number。 Please try again.\n";
                     chos = 9;
-                    break;
-                }    
+                }
             }
-
         }
-
-        
-        
-        
-        
-
     return 0;
 }
