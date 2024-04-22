@@ -9,6 +9,10 @@ int koreaStandard[6] = {7985, 6315, 5380, 5990, 3995, 890};
 int koreaDeluxe[6] = {8730, 6950, 6150, 6550, 4365, 1465};
 int koreaLuxury[6] = {10745, 9290, 8155, 8060, 5375, 2440};
 string package[3] = {"Standard", "Deluxe", "Luxury"};
+string place[2] = {"Tokyo", "South Korea"};
+
+int chos, packageOption, numOfPeople;
+bool withChildOrNot, withChildBedOrNot;
 
 void TotalPrice(int chos, int packageOption, int numOfPeople, bool withChildOrNot, bool withChildBedOrNot){
     
@@ -23,17 +27,40 @@ int main(){
         
             for(int chos = 0; chos != -1; chos--){ //this for is for first menu
                 cin>>chos;
-                if(chos == 1 || chos == 2){ //we do the register there
-                    cout<<"Now we need to know how you are.\n";
-                    cout<<"Please enter your name:";
-                    string userName;
-                    cin>>userName;
-                    cout<<"Please enter your phone number:";
-                    string phoneNumber;
-                    cin>>phoneNumber;
-                    //generate booking number
-                    string bookingNumber = userName.substr(0,4) + phoneNumber.substr(phoneNumber.length()-4);
-                    //cout<<bookingNumber<<endl;
+                if(chos == 1 || chos == 2){
+                    for(int i = 0; i != -1; i--){
+                        cout<<"You are going to "<<place[chos - 1]<<"\nWhich package you want to choose?"<<endl<<"[1]"<<package[0]<<endl<<"[2]"<<package[1]<<endl;
+                        if(chos == 2){
+                            cout<<"[3]"<<package[2]<<endl;
+                        }
+                        cout<<"Please enter the number at the front of option.\n";
+                        cin>>packageOption;
+                        if((packageOption == 1 || packageOption == 2) || (chos == 2 && packageOption == 3)){
+                            cout<<"OK, now you choosed "<<package[packageOption - 1];
+                            cout<<"How many people of you?\n";
+                            cin>>numOfPeople;
+                            for(int c = 0; c != -1; c--){
+                                cout<<"Will there a child with you?\n[y/n]\n";
+                                string baby;
+                                cin>>baby;
+                                if(baby == "y" || baby == "Y"){
+                                    baby = "with baby";
+                                }
+                                else if(baby == "n" || baby == "N"){
+                                    baby = "with no baby";
+                                }
+                                else{
+                                    cout<<"You entered WRONG answer! Try again."
+                                }                            
+                            }
+                            
+                        }
+                        else{
+                            cout<<"You entered WRONG number。 Please try again.\n";
+                            packageOption = 0;
+                            i = 1;
+                        }
+                    }
                 }
                 else if(chos == 3){
                     chos = 0;
@@ -46,3 +73,14 @@ int main(){
         }
     return 0;
 }
+
+                    /*cout<<"Now we need to know how you are.\n";
+                    cout<<"Please enter your name:";
+                    string userName;
+                    cin>>userName;
+                    cout<<"Please enter your phone number:";
+                    string phoneNumber;
+                    cin>>phoneNumber;
+                    //generate booking number
+                    string bookingNumber = userName.substr(0,4) + phoneNumber.substr(phoneNumber.length()-4);
+                    //cout<<bookingNumber<<endl;*/
