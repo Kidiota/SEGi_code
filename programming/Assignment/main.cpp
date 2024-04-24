@@ -11,7 +11,7 @@ int koreaLuxury[6] = {10745, 9290, 8155, 8060, 5375, 2440};
 string package[3] = {"Standard", "Deluxe", "Luxury"};
 string place[2] = {"Tokyo", "South Korea"};
 
-int chos, packageOption, numOfPeople;
+int chos, packageOption, numOfPeople, numOfChild;
 bool withChildOrNot, withChildBedOrNot;
 
 void TotalPrice(int chos, int packageOption, int numOfPeople, bool withChildOrNot, bool withChildBedOrNot){
@@ -42,16 +42,18 @@ int main(){
                             for(int c = 0; c != -1; c--){
                                 cout<<"Will there a child with you?\n[y/n]\n";
                                 string baby;
-                                cin>>baby;
-                                if(baby == "y" || baby == "Y"){
-                                    baby = "with baby";
+                                cin>>baby; //to know is there any baby
+                                if(baby != "y" || baby != "Y" || baby != "n" || baby != "N"){
+                                    cout<<"You entered WRONG answer! Try again.";
+                                    c = 1;
                                 }
-                                else if(baby == "n" || baby == "N"){
-                                    baby = "with no baby";
+                                else if(baby == "y" || baby == "Y"){
+                                    cout<<"How many child with you?"<<endl;
+                                    cin>>numOfChild;
                                 }
-                                else{
-                                    cout<<"You entered WRONG answer! Try again."
-                                }                            
+                                cout<<"now u choosed with"<<numOfChild<<baby<<endl;
+
+
                             }
                             
                         }
