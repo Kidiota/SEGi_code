@@ -92,8 +92,14 @@ int main(){
                     cin>>packageOption;
                     if((packageOption == 1 || packageOption == 2) || (chos == 2 && packageOption == 3)){
                         cout<<"OK, now you choosed "<<package[packageOption - 1];
-                        cout<<"\nHow many people of you?\n";
-                        cin>>numOfPeople;
+                        for(int f = 0; f != -1; f--){
+                            cout<<"\nHow many people of you?\n";
+                            cin>>numOfPeople;
+                            if(numOfPeople < 2 || numOfPeople > 9){
+                                cout<<"Minimum two people, maximum nine people";
+                                f = 1;
+                            }
+                        }
                         for(int c = 0; c != -1; c--){
                             cout<<"Will there a child with you?\n[y/n]\n";
                             string baby;
@@ -124,7 +130,7 @@ int main(){
                                 else{
                                     withChildOrNot = 0;
                                 }
-                                cout<<"Now we need some of your information.\nWhat' your name?\n";
+                                cout<<"Now we need some of your information.\nWhat' your name?(no spaces)\n";
                                 cin>>userName;
                                 cout<<"And your phone number?\n";
                                 cin>>PhoneNumber;
@@ -163,8 +169,14 @@ int main(){
         }
         cout<<"\nYour booking number is "<<userName.substr(0,4)<<PhoneNumber.substr(PhoneNumber.size() - 4, 4)<<endl;
         totalPrice(chos, packageOption, numOfPeople, numOfChild, withChildOrNot, withChildBedOrNot);
-        cout<<"Now you want to book another one or just exit?\n[1]Book another one\n[2]Exit\n";
-        cin>>loop;
+        for(int j = 0; j != -1; j--){
+            cout<<"Now you want to book another one or just exit?\n[1]Book another one\n[2]Exit\n";
+            cin>>loop;
+            if(loop != 1 && loop != 2){
+                cout<<"You entered the WRONG number, please try again.\n";
+                j = 1;
+            }
+        }
     }
     return 0;
 }
