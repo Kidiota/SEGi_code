@@ -10,7 +10,7 @@ int koreaLuxury[6] = {10745, 9290, 8155, 8060, 5375, 2440};
 int childPrice[10] = {8455, 4915, 8910, 5245, 3995, 890, 4365, 1465, 5375, 2440};
 string package[3] = {"Standard", "Deluxe", "Luxury"};
 string place[2] = {"Tokyo", "South Korea"};
-uint8_t chos, packageOption, numOfPeople, numOfChild;
+int chos, packageOption, numOfPeople, numOfChild;
 bool withChildOrNot, withChildBedOrNot;
 string userName, PhoneNumber;
 void totalPrice(int chos, int packageOption, int numOfPeople, int numOfChild, bool withChildOrNot, bool withChildBedOrNot){
