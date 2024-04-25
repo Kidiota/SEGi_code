@@ -7,6 +7,7 @@ int tokyoDeluxe[6] = {10485, 7580, 6630, 6160, 8910, 5245};
 int koreaStandard[6] = {7985, 6315, 5380, 5990, 3995, 890};
 int koreaDeluxe[6] = {8730, 6950, 6150, 6550, 4365, 1465};
 int koreaLuxury[6] = {10745, 9290, 8155, 8060, 5375, 2440};
+int childPrice[10] = {8455, 4915, 8910, 5245, 3995, 890, 4365, 1465, 5375, 2440};
 string package[3] = {"Standard", "Deluxe", "Luxury"};
 string place[2] = {"Tokyo", "South Korea"};
 
@@ -14,13 +15,73 @@ int chos, packageOption, numOfPeople, numOfChild;
 bool withChildOrNot, withChildBedOrNot;
 string userName, PhoneNumber;
 
-void TotalPrice(int chos, int packageOption, int numOfPeople, int numOfChild, bool withChildOrNot, bool withChildBedOrNot){
+void totalPrice(int chos, int packageOption, int numOfPeople, int numOfChild, bool withChildOrNot, bool withChildBedOrNot){
+    //to know how much for one people
+    int pricePerPeople;
+    int pricePosition;
+    int priceForChild;
+    int cp;
+    if(numOfPeople >= 2 && numOfPeople <= 3){
+        pricePosition = 0;
+    }
+    if(numOfPeople >= 4 && numOfPeople <= 5){
+        pricePosition = 1;
+    }
+    if(numOfPeople >= 6 && numOfPeople <= 7){
+        pricePosition = 2;
+    }
+    if(numOfPeople >= 8 && numOfPeople <= 9){
+        pricePosition = 3;
+    }
+    //to know where they go
+    switch (chos)
+    {
+    case 1:
+        switch (packageOption)
+        {
+        case 1:
+            pricePerPeople = tokyoStandard[pricePosition];
+            cp = 0;
+            break;
+        case 2:
+            pricePerPeople = tokyoDeluxe[pricePosition];
+            cp = 2;
+            break;
+        }
+        break;
+    case 2:
+        switch (packageOption)
+        {
+        case 1:
+            pricePerPeople = koreaStandard[pricePosition];
+            cp = 4;
+            break;
+        case 2:
+            pricePerPeople = koreaDeluxe[pricePosition];
+            cp = 6;
+            break;
+        case 3:
+            pricePerPeople = koreaLuxury[pricePosition];
+            cp = 8;
+            break;
+        }
+    }
+    //get the price for baby
+    if(withChildOrNot == 1){
+        if(withChildBedOrNot == 1){
+            cp = cp + 1;
+        }
+        priceForChild = childPrice[cp];
+        cout<<"RM "<<priceForChild<<" for one child."<<endl;
+    }
+    cout<<"RM "<<pricePerPeople<<" for one adult."<<endl;
+    cout<<"Total price is RM "<<(priceForChild * numOfChild) + (pricePerPeople * numOfPeople);
     
 }
 
 int main(){
-    for(int chos = 0; chos != -1; chos--){ //this is for the loop from the end        
-        for(int chos = 0; chos != -1; chos--){ //this for is for first menu
+    for(int loop = 0; loop != 1; loop--){ //this is for the loop from the end        
+        for(int s = 0; s != -1; s--){ //this for is for first menu
             cout<<"Thank you for using Lavender Trours & Travel travel package booking progream"<<endl;
             cout<<"Please enter the number at the front of option that you want to choose."<<endl;
             cout<<"[1] Go to TOKYO\n[2] Go to SOUTH KOREA\n[3]EXIT"<<endl;
@@ -35,7 +96,7 @@ int main(){
                     cin>>packageOption;
                     if((packageOption == 1 || packageOption == 2) || (chos == 2 && packageOption == 3)){
                         cout<<"OK, now you choosed "<<package[packageOption - 1];
-                        cout<<"How many people of you?\n";
+                        cout<<"\nHow many people of you?\n";
                         cin>>numOfPeople;
                         for(int c = 0; c != -1; c--){
                             cout<<"Will there a child with you?\n[y/n]\n";
@@ -86,25 +147,31 @@ int main(){
                 }
             }
             else if(chos == 3){
-                chos = 0;
+                return 0; 
             }
             else{
                 cout<<"You entered WRONG number。 Please try again.\n";
-                chos = 9;
+                s = 1;
             }
         }
-    }
-    cout<<"Now, we are ready to book the travel.\nYou have choosed to go to "<<place[chos - 1]<<" with "<<package[packageOption - 1]<<"package.\n";
-    cout<<"And all of you are "<<numOfPeople<<" people";
-    if(withChildOrNot == 1){
-        cout<<"and with "<<numOfChild<<" child, with";
-        if(withChildBedOrNot = 1){
-            cout<<"bed";
-        }
-        else{
-            cout<<"no bed";
-        }
-    }
     
+        cout<<"Now, we are ready to book the travel.\nYou have choosed to go to "<<place[chos - 1]<<" with "<<package[packageOption - 1]<<" package.\n";
+        cout<<"And all of you are "<<numOfPeople<<" people.";
+        if(withChildOrNot == 1){
+            cout<<"\nAnd with "<<numOfChild<<" child, with";
+            if(withChildBedOrNot == 1){
+                cout<<" bed";
+            }
+            else{
+                cout<<" no bed";
+            }
+        }
+        cout<<"\nYour booking number is "<<userName.substr(0,4)<<PhoneNumber.substr(PhoneNumber.size() - 4, 4)<<endl;
+        totalPrice(chos, packageOption, numOfPeople, numOfChild, withChildOrNot, withChildBedOrNot);
+
+        cout<<"Now you want to book another one or just exit?\n[1]Book another one\n[2]Exit\n";
+        cin>>loop;
+    }
+
     return 0;
 }
