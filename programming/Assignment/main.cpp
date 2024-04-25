@@ -10,11 +10,9 @@ int koreaLuxury[6] = {10745, 9290, 8155, 8060, 5375, 2440};
 int childPrice[10] = {8455, 4915, 8910, 5245, 3995, 890, 4365, 1465, 5375, 2440};
 string package[3] = {"Standard", "Deluxe", "Luxury"};
 string place[2] = {"Tokyo", "South Korea"};
-
 int chos, packageOption, numOfPeople, numOfChild;
 bool withChildOrNot, withChildBedOrNot;
 string userName, PhoneNumber;
-
 void totalPrice(int chos, int packageOption, int numOfPeople, int numOfChild, bool withChildOrNot, bool withChildBedOrNot){
     //to know how much for one people
     int pricePerPeople;
@@ -76,9 +74,7 @@ void totalPrice(int chos, int packageOption, int numOfPeople, int numOfChild, bo
     }
     cout<<"RM "<<pricePerPeople<<" for one adult."<<endl;
     cout<<"Total price is RM "<<(priceForChild * numOfChild) + (pricePerPeople * numOfPeople);
-    
 }
-
 int main(){
     for(int loop = 0; loop != 1; loop--){ //this is for the loop from the end        
         for(int s = 0; s != -1; s--){ //this for is for first menu
@@ -154,7 +150,6 @@ int main(){
                 s = 1;
             }
         }
-    
         cout<<"Now, we are ready to book the travel.\nYou have choosed to go to "<<place[chos - 1]<<" with "<<package[packageOption - 1]<<" package.\n";
         cout<<"And all of you are "<<numOfPeople<<" people.";
         if(withChildOrNot == 1){
@@ -168,10 +163,8 @@ int main(){
         }
         cout<<"\nYour booking number is "<<userName.substr(0,4)<<PhoneNumber.substr(PhoneNumber.size() - 4, 4)<<endl;
         totalPrice(chos, packageOption, numOfPeople, numOfChild, withChildOrNot, withChildBedOrNot);
-
         cout<<"Now you want to book another one or just exit?\n[1]Book another one\n[2]Exit\n";
         cin>>loop;
     }
-
     return 0;
 }
