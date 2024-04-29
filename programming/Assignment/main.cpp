@@ -2,7 +2,7 @@
 #include<string>
 using namespace std;
 int price [2] [3] [6] = {{{9945, 7035, 6090, 5620, 8455, 4975},{10485, 7580, 6630, 6160, 8910, 5245}},{{7985, 6315, 5380, 5990, 3995, 890},{8730, 6950, 6150, 6550, 4365, 1465},{10745, 9290, 8155, 8060, 5375, 2440}}};
-int childPrice[10] = {8455, 4915, 8910, 5245, 3995, 890, 4365, 1465, 5375, 2440};
+int childPrice [2] [3] [2] {{{4975,8455},{5245,8910}},{{890,3995},{1465,4365},{2440,5375}}};
 string package[3] = {"Standard", "Deluxe", "Luxury"};
 string place[2] = {"Tokyo", "South Korea"};
 int chos, packageOption, numOfPeople, numOfChild;
@@ -14,10 +14,7 @@ void totalPrice(int chos, int packageOption, int numOfPeople, int numOfChild, bo
     int cp;
     pricePerPeople = price[chos-1][packageOption-1][numOfPeople/2-1]; //get the price for one people 
     if(withChildOrNot == 1){  //get the price for baby
-        if(withChildBedOrNot == 1){
-            cp = cp + 1;
-        }
-        priceForChild = childPrice[cp];
+        priceForChild = childPrice[chos-1][packageOption-1][withChildBedOrNot];
         cout<<"RM "<<priceForChild<<" for one child."<<endl;
     }
     cout<<"RM "<<pricePerPeople<<" for one adult."<<endl;
@@ -55,8 +52,14 @@ int main(){
                             if(baby == "y" || baby == "Y" || baby == "n" || baby == "N"){
                                 if(baby == "y" || baby == "Y"){
                                     withChildOrNot = 1;
-                                    cout<<"How many child with you?"<<endl;
-                                    cin>>numOfChild;
+                                    for(int u = 0; u != -1; u--){
+                                        cout<<"How many child with you?"<<endl;
+                                        cin>>numOfChild;
+                                        if(numOfChild <= 0){
+                                            cout<<"You choosed with child, type again.\n";
+                                            u = 1;
+                                        }
+                                    }
                                     for(int i = 0; i != -1; i--){
                                         cout<<"Do they need a bed?\n[y/n]\n";
                                         char wcbon;
@@ -118,7 +121,7 @@ int main(){
         cout<<"\nYour booking number is "<<userName.substr(0,4)<<PhoneNumber.substr(PhoneNumber.size() - 4, 4)<<endl; //make the user id
         totalPrice(chos, packageOption, numOfPeople, numOfChild, withChildOrNot, withChildBedOrNot); //get the total price
         for(int j = 0; j != -1; j--){
-            cout<<"Now you want to book another one or just exit?\n[1]Book another one\n[2]Exit\n";
+            cout<<"\nNow you want to book another one or just exit?\n[1]Book another one\n[2]Exit\n";
             cin>>loop;
             if(loop != 1 && loop != 2){
                 cout<<"You entered the WRONG number, please try again.\n";
