@@ -2,11 +2,7 @@
 #include<string>
 using namespace std;
 //prices
-int tokyoStandard[6] = {9945, 7035, 6090, 5620, 8455, 4975};
-int tokyoDeluxe[6] = {10485, 7580, 6630, 6160, 8910, 5245};
-int koreaStandard[6] = {7985, 6315, 5380, 5990, 3995, 890};
-int koreaDeluxe[6] = {8730, 6950, 6150, 6550, 4365, 1465};
-int koreaLuxury[6] = {10745, 9290, 8155, 8060, 5375, 2440};
+int price [2] [3] [6] = {{{9945, 7035, 6090, 5620, 8455, 4975},{10485, 7580, 6630, 6160, 8910, 5245}},{{7985, 6315, 5380, 5990, 3995, 890},{8730, 6950, 6150, 6550, 4365, 1465},{10745, 9290, 8155, 8060, 5375, 2440}}};
 int childPrice[10] = {8455, 4915, 8910, 5245, 3995, 890, 4365, 1465, 5375, 2440};
 string package[3] = {"Standard", "Deluxe", "Luxury"};
 string place[2] = {"Tokyo", "South Korea"};
@@ -14,56 +10,10 @@ int chos, packageOption, numOfPeople, numOfChild;
 bool withChildOrNot, withChildBedOrNot;
 string userName, PhoneNumber;
 void totalPrice(int chos, int packageOption, int numOfPeople, int numOfChild, bool withChildOrNot, bool withChildBedOrNot){
-    //to know how much for one people
     int pricePerPeople;
-    int pricePosition;
     int priceForChild;
     int cp;
-    if(numOfPeople >= 2 && numOfPeople <= 3){
-        pricePosition = 0;
-    }
-    if(numOfPeople >= 4 && numOfPeople <= 5){
-        pricePosition = 1;
-    }
-    if(numOfPeople >= 6 && numOfPeople <= 7){
-        pricePosition = 2;
-    }
-    if(numOfPeople >= 8 && numOfPeople <= 9){
-        pricePosition = 3;
-    }
-    //to know where they go
-    switch (chos)
-    {
-    case 1:
-        switch (packageOption)
-        {
-        case 1:
-            pricePerPeople = tokyoStandard[pricePosition];
-            cp = 0;
-            break;
-        case 2:
-            pricePerPeople = tokyoDeluxe[pricePosition];
-            cp = 2;
-            break;
-        }
-        break;
-    case 2:
-        switch (packageOption)
-        {
-        case 1:
-            pricePerPeople = koreaStandard[pricePosition];
-            cp = 4;
-            break;
-        case 2:
-            pricePerPeople = koreaDeluxe[pricePosition];
-            cp = 6;
-            break;
-        case 3:
-            pricePerPeople = koreaLuxury[pricePosition];
-            cp = 8;
-            break;
-        }
-    }
+    pricePerPeople = price[chos-1][packageOption-1][numOfPeople/2-1];
     //get the price for baby
     if(withChildOrNot == 1){
         if(withChildBedOrNot == 1){
