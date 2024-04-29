@@ -1,7 +1,6 @@
 #include<iostream>
 #include<string>
 using namespace std;
-//prices
 int price [2] [3] [6] = {{{9945, 7035, 6090, 5620, 8455, 4975},{10485, 7580, 6630, 6160, 8910, 5245}},{{7985, 6315, 5380, 5990, 3995, 890},{8730, 6950, 6150, 6550, 4365, 1465},{10745, 9290, 8155, 8060, 5375, 2440}}};
 int childPrice[10] = {8455, 4915, 8910, 5245, 3995, 890, 4365, 1465, 5375, 2440};
 string package[3] = {"Standard", "Deluxe", "Luxury"};
@@ -13,9 +12,8 @@ void totalPrice(int chos, int packageOption, int numOfPeople, int numOfChild, bo
     int pricePerPeople;
     int priceForChild;
     int cp;
-    pricePerPeople = price[chos-1][packageOption-1][numOfPeople/2-1];
-    //get the price for baby
-    if(withChildOrNot == 1){
+    pricePerPeople = price[chos-1][packageOption-1][numOfPeople/2-1]; //get the price for one people 
+    if(withChildOrNot == 1){  //get the price for baby
         if(withChildBedOrNot == 1){
             cp = cp + 1;
         }
@@ -31,20 +29,20 @@ int main(){
             cout<<"Thank you for using Lavender Trours & Travel travel package booking progream"<<endl;
             cout<<"Please enter the number at the front of option that you want to choose."<<endl;
             cout<<"[1] Go to TOKYO\n[2] Go to SOUTH KOREA\n[3]EXIT"<<endl;
-            cin>>chos;
-            if(chos == 1 || chos == 2){
+            cin>>chos; //get know where to go
+            if(chos == 1 || chos == 2){ //if the answer is wrong, go back
                 for(int i = 0; i != -1; i--){
                     cout<<"You are going to "<<place[chos - 1]<<"\nWhich package you want to choose?"<<endl<<"[1]"<<package[0]<<endl<<"[2]"<<package[1]<<endl;
-                    if(chos == 2){
+                    if(chos == 2){ //if go to korea, have 3 chooses
                         cout<<"[3]"<<package[2]<<endl;
                     }
                     cout<<"Please enter the number at the front of option.\n";
-                    cin>>packageOption;
+                    cin>>packageOption; //to know which package
                     if((packageOption == 1 || packageOption == 2) || (chos == 2 && packageOption == 3)){
                         cout<<"OK, now you choosed "<<package[packageOption - 1];
                         for(int f = 0; f != -1; f--){
                             cout<<"\nHow many people of you?\n";
-                            cin>>numOfPeople;
+                            cin>>numOfPeople; //to know how many people
                             if(numOfPeople < 2 || numOfPeople > 9){
                                 cout<<"Minimum two people, maximum nine people";
                                 f = 1;
@@ -81,9 +79,9 @@ int main(){
                                     withChildOrNot = 0;
                                 }
                                 cout<<"Now we need some of your information.\nWhat' your name?(no spaces)\n";
-                                cin>>userName;
+                                cin>>userName; //get user name
                                 cout<<"And your phone number?\n";
-                                cin>>PhoneNumber;
+                                cin>>PhoneNumber; //get phone number
                             }
                             else{
                                 cout<<"You entered WRONG answer! Try again.\n";
@@ -117,8 +115,8 @@ int main(){
                 cout<<" no bed";
             }
         }
-        cout<<"\nYour booking number is "<<userName.substr(0,4)<<PhoneNumber.substr(PhoneNumber.size() - 4, 4)<<endl;
-        totalPrice(chos, packageOption, numOfPeople, numOfChild, withChildOrNot, withChildBedOrNot);
+        cout<<"\nYour booking number is "<<userName.substr(0,4)<<PhoneNumber.substr(PhoneNumber.size() - 4, 4)<<endl; //make the user id
+        totalPrice(chos, packageOption, numOfPeople, numOfChild, withChildOrNot, withChildBedOrNot); //get the total price
         for(int j = 0; j != -1; j--){
             cout<<"Now you want to book another one or just exit?\n[1]Book another one\n[2]Exit\n";
             cin>>loop;
