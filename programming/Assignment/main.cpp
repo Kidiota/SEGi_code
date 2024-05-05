@@ -24,6 +24,29 @@ int main(){
     for(int loop = 0; loop != 1; loop--){ //this is for the loop from the end        
         for(int s = 0; s != -1; s--){ //this for is for first menu
             cout<<"Thank you for using Lavender Trours & Travel travel package booking progream"<<endl;
+            cout<<" ________________________________________________________________"<<endl;
+            cout<<"|                         WONDERFUL TOKYO                        |"<<endl;
+            cout<<"|----------------------------------------------------------------|"<<endl;
+            cout<<"|  Package |                 Price per Person (RM)               |"<<endl;
+            cout<<"|  Option  | 2-3pax | 4-5pax | 6-7pax | 8-9pax |child WB|child NB|"<<endl;
+            cout<<"|----------------------------------------------------------------|"<<endl;
+            cout<<"| standard | RM9945 | RM7035 | RM6090 | RM5620 | RM8455 | RM4975 |"<<endl;
+            cout<<"|----------------------------------------------------------------|"<<endl;
+            cout<<"|  Deluxe  | RM10485| RM7580 | RM6630 | RM6160 | RM8910 | RM5245 |"<<endl;
+            cout<<"|________________________________________________________________|\n"<<endl;
+            cout<<" ________________________________________________________________"<<endl;
+            cout<<"|                       AMAZING SEOUL & JEJU                     |"<<endl;
+            cout<<"|----------------------------------------------------------------|"<<endl;
+            cout<<"|  Package |                 Price per Person (RM)               |"<<endl;
+            cout<<"|  Option  | 2-3pax | 4-5pax | 6-7pax | 8-9pax |child WB|child NB|"<<endl;
+            cout<<"|----------------------------------------------------------------|"<<endl;
+            cout<<"| standard | RM7985 | RM6315 | RM5380 | RM5990 | RM3995 | RM 890 |"<<endl;
+            cout<<"|----------------------------------------------------------------|"<<endl;
+            cout<<"|  Deluxe  | RM8730 | RM6950 | RM6150 | RM6550 | RM4365 | RM1465 |"<<endl;
+            cout<<"|----------------------------------------------------------------|"<<endl;
+            cout<<"|  Luxury  | RM10745| RM9290 | RM8155 | RM8060 | RM5375 | RM2440 |"<<endl;
+            cout<<"|________________________________________________________________|"<<endl;
+            cout<<"                                Nots: WB = With bed. NB = No bed."<<endl;
             cout<<"Please enter the number at the front of option that you want to choose."<<endl;
             cout<<"[1] Go to TOKYO\n[2] Go to SOUTH KOREA\n[3]EXIT"<<endl;
             cin>>chos; //get know where to go
